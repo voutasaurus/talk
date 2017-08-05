@@ -1,0 +1,82 @@
+Go Concurrency Footguns
+Unshooting your independently moving feet
+19:30 20 Sep 2017
+Tags: Go, concurrency, race, datarace, logicrace
+
+Anthony Voutas
+Gopher, Backplane
+anthony@backplane.io
+https://voutasaur.us/
+@voutasaurus
+
+References:
+https://golang.org/doc/articles/race_detector.html
+https://golang.org/cmd/vet/
+
+* What is concurrency?
+
+Unknown order of execution
+Could be parallel
+Maybe sequential but just not in an order you might expect
+
+* Sources of concurrency
+
+- Parallelism
+- CPU Multithreading
+- Distributed Computation
+
+* Concurrency in Go
+
+- Goroutines
+- Channels
+- `select`
+
+: [insert image of gophers passing objects]
+: Channels can be used to share data
+: Channels can also be used to coordinate and orchestrate communication
+
+* sync Package
+
+- Mutex
+- Once
+- WaitGroup
+
+* sync/atomic Package
+
+- Value
+
+* Footgun #1: for go func
+
+.play -edit footgun1.go
+
+* Footgun #2: surprise waitgroup
+
+.play -edit footgun2.go
+
+* Footgun #3: data races
+
+.play -edit footgun3.go
+
+* Footgun #4: born in a tent
+
+.play -edit footgun4.go
+
+: add more footguns
+
+* Morals
+
+Use go tools
+
+Static analysis
+
+ go vet
+
+Race detector (dynamic)
+
+ go test -race
+
+Benchmarking (for performance)
+
+ go test -bench
+
+Forget your assumptions. Ask questions
