@@ -12,6 +12,7 @@ https://voutasaur.us/
 References:
 https://golang.org/doc/articles/race_detector.html
 https://golang.org/cmd/vet/
+https://golang.org/pkg/testing/
 
 * What is concurrency?
 
@@ -79,4 +80,4 @@ Benchmarking (for performance)
 
  go test -bench
 
-Forget your assumptions. Ask questions
+Forget your assumptions. Ask questions. Test things
