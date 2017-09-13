@@ -18,7 +18,7 @@ https://golang.org/pkg/testing/
 
 Unknown order of execution
 Could be parallel
-Maybe sequential but just not in an order you might expect
+Maybe sequential but not in an order you might expect
 
 * Sources of concurrency
 
