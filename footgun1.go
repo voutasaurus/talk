@@ -6,12 +6,10 @@ import (
 )
 
 func main() {
-	sum := 0
-	for x := 0; x < 10; x++ {
+	for x := range []int{0, 1, 2, 3, 4} {
 		go func() {
-			sum += x
+			fmt.Println(x)
 		}()
 	}
 	time.Sleep(1 * time.Second)
-	fmt.Println(sum)
 }
