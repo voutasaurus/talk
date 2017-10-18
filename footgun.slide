@@ -20,7 +20,7 @@ https://golang.org/pkg/testing/
 : 4) Brains didn’t evolve to deal with abstractions. Language is a retrofit. And it turns out language is not great at concurrent things. Go is specifically designed with concurrency in mind and even then it’s a challenge. How do we address this challenge?
 : 5) Story about concurrent loop variable closures
 : 6) So what do we do about this? Tools for dealing with complexity (go vet, go test -race)
-: 7) I'd love to talk to people afterwards about their footgun experiences and what language they would use.
+: 7) I'd love to talk to people afterwards about their footgun experiences and how to encode mental models that help avoid these experiences.
 
 * 
 
