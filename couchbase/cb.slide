@@ -1,0 +1,111 @@
+Go and Couchbase
+Reproducible local development
+16:30 12 Oct 2018
+Tags: Go, concurrency, race, datarace, logicrace
+
+Anthony Voutas
+Gopher, Loyyal
+anthony@loyyal.com
+@voutasaurus
+
+References:
+
+https://github.com/voutasaurus/talk
+https://github.com/voutasaurus/cbtest
+
+: Structure
+: 1) Hi. I’m Anthony. Gopher at Loyyal.
+: 2) On a team, a local development environment should work out of the box and
+: common local behavior should be reproducible across the team. To achieve this
+: we can use cloud native systems with quick and reliable startup as well as
+: declarative programmatic configuration checked in to source control. Some
+: systems don't come like this by default, and any team will have at least one
+: person who likes some tool like this. Couchbase is one of these. Can we still
+: use Couchbase?
+: 3) What is Couchbase and why isn't including Couchbase frictionless for us?
+: GUI, cli, appears to also have a configuration API. Documentation isn't
+: complete and config is not declarative based on environment variables.
+: 4) From a technical perspective what we do at Loyyal is process transactions.
+: We use a tiered architecture for scalability. At the first tier we need to
+: store transactions for further processing, and we're moving to a system that
+: uses couchbase for that. Couchbase is a key value store with a SQL-like
+: language called N1QL.
+: 5) Okay at least there's a docker container though.
+: 6) We need to write a script and run it in the container, so we wrap the container
+: 7) 
+: 8)
+
+* Team Local Development Goals
+
+Out of the Box (git pull and play)
+
+Reproducibility
+
+Declarative Configuration
+
+* Nondeclarative systems
+
+Couchbase
+
+Config docs say to use GUI... :/
+
+Headless config? (not documented)
+
+* Can we just not with Couchbase?
+
+Tiered architecture for transaction processing.
+
+Backing store is distributed blockchain based KV store.
+
+Couchbase is KV store with cache management.
+
+(Arguing is more expensive than just doing it)
+
+* Container / Docker compose
+
+couchbase/couchbase
+
+Config?
+
+* Container / Docker compose
+
+couchbase/couchbase
+
+Config?
+
+Wrapping:
+
+	FROM couchbase
+	ADD config.sh config.sh
+	ENTRYPOINT ["./config.sh"]
+
+* Configuration
+
+Script:
+- Wait for the cluster to be up
+- Create bucket
+- Create user
+- Create index
+
+* Readiness
+
+.image are-we-there-yet.png
+
+* Readiness (Retries)
+
+ 	// Wait for DB to become available (or timeout)
+ 	for {
+ 		time.Sleep(100 * time.Millisecond)
+ 		db, err := newDB(c)
+ 		if err == nil {
+ 			return db, nil
+ 		}
+ 		select {
+ 		case <-ctx.Done():
+ 			return nil, err
+ 		default:
+ 		}
+ 	}
+
+
+* Demo
